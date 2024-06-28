@@ -1,3 +1,4 @@
 import MemoService from './memoService.js';
+import CommentService from './commentService.js';
 
-export { MemoService };
+export { MemoService, CommentService };
