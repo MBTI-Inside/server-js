@@ -25,7 +25,7 @@ const surveySchema = new Schema(
     }
   },
   {
-    collection: 'surveys',
+    collection: 'survey',
     timestamps: true,
     versionKey: false
   }
