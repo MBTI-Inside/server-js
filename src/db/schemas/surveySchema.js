@@ -1,8 +1,8 @@
 import { Schema } from 'mongoose';
 import answerSchema from './answerSchema.js';
 
-// Question Schema
-const questionSchema = new Schema(
+// Survey Schema
+const surveySchema = new Schema(
   {
     subject: {
       type: String,
@@ -25,10 +25,10 @@ const questionSchema = new Schema(
     }
   },
   {
-    collection: 'questions',
+    collection: 'surveys',
     timestamps: true,
     versionKey: false
   }
 );
 
-export default questionSchema;
+export default surveySchema;

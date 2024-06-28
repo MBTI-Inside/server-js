@@ -1,5 +1,5 @@
 import MemoService from './memoService.js';
 import CommentService from './commentService.js';
-import QuestionService from './questionService.js';
+import SurveyService from './surveyService.js';
 
-export { MemoService, CommentService, QuestionService };
+export { MemoService, CommentService, SurveyService };

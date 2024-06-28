@@ -1,59 +1,59 @@
 import { Router } from 'express';
-import { QuestionService } from '../services/index.js';
+import { SurveyService } from '../services/index.js';
 import asyncHandler from '../middlewares/asyncHandler.js';
 
-const questionRouter = Router();
-const questionService = new QuestionService();
+const surveyRouter = Router();
+const surveyService = new SurveyService();
 
-// Question 조회
-questionRouter.get(
+// Survey 조회
+surveyRouter.get(
   '/:id',
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
-    return await questionService.getQuestion(id);
+    return await surveyService.getSurvey(id);
   })
 );
 
-// Question 전체 조회
-questionRouter.get(
+// Survey 전체 조회
+surveyRouter.get(
   '/',
   asyncHandler(async (req, res, next) => {
-    return await questionService.getQuestions();
+    return await surveyService.getSurveys();
   })
 );
 
-// Question 저장
-questionRouter.post(
+// Survey 저장
+surveyRouter.post(
   '/',
   asyncHandler(async (req, res, next) => {
     const { title, content } = req.body;
-    return await questionService.addQuestion({
+    return await surveyService.addSurvey({
       title,
       content
     });
   })
 );
 
-// Question 수정
-questionRouter.patch(
+// Survey 수정
+surveyRouter.patch(
   '/:id',
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
     const { title, content } = req.body;
-    return await questionService.updateQuestion(id, {
+    return await surveyService.updateSurvey(id, {
       title,
       content
     });
   })
 );
 
-// Question 삭제
-questionRouter.delete(
+// Survey 삭제
+surveyRouter.delete(
   '/:id',
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
-    return await questionService.deleteQuestion(id);
+    return await surveyService.deleteSurvey(id);
   })
 );
 
-export default questionRouter;
+export default surveyRouter;

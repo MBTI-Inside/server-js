@@ -1,5 +1,5 @@
 import MemoModel from './memoModel.js';
 import CommentModel from './commentModel.js';
-import QuestionModel from './questionModel.js';
+import SurveyModel from './surveyModel.js';
 
-export { MemoModel, CommentModel, QuestionModel };
+export { MemoModel, CommentModel, SurveyModel };
