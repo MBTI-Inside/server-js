@@ -39,6 +39,7 @@ const memoSchema = new Schema(
     }
   },
   {
+    collection: 'memo',
     timestamps: true,
     versionKey: false
   }
