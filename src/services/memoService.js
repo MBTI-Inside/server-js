@@ -20,4 +20,5 @@ class MemoService {
     return this.memoModel.delete(id);
   }
 }
+
 export default MemoService;
