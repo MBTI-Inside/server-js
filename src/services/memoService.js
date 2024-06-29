@@ -11,6 +11,8 @@ class MemoService {
   getMemos() {
     // TODO: 댓글 수는 해당 메모 Id에 대해 댓글 수를 조회하여 count 값을 가져오는 것이 아니라
     // 댓글을 작성할 때 해당 메모 Id에 대해 댓글 수를 업데이트 하는 방식으로 구현해야 한다.
+
+    // TODO: 무한스크롤 기능을 위해 limit, skip 값이 필요하다.
     return this.memoModel.findMemos();
   }
   addMemo(memo) {
