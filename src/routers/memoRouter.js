@@ -26,11 +26,24 @@ memoRouter.get(
 memoRouter.post(
   '/',
   asyncHandler(async (req, res, next) => {
-    const { title, content } = req.body;
+    const { title, content, password, mbtiType, cardColor } = req.body;
     return await memoService.addMemo({
       title,
-      content
+      content,
+      password,
+      mbtiType,
+      cardColor
     });
+  })
+);
+
+// Memo 수정 시 비밀번호 입력 검증
+memoRouter.post(
+  '/:id',
+  asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const { password } = req.body;
+    return await memoService.checkMemo(id, password);
   })
 );
 
@@ -39,11 +52,23 @@ memoRouter.patch(
   '/:id',
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
-    const { title, content } = req.body;
+    const { title, content, password, mbtiType, cardColor } = req.body;
     return await memoService.updateMemo(id, {
       title,
-      content
+      content,
+      password,
+      mbtiType,
+      cardColor
     });
+  })
+);
+
+// Memo 좋아요 처리
+memoRouter.patch(
+  '/:id/like',
+  asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    return await memoService.updateMemoLike(id);
   })
 );
 

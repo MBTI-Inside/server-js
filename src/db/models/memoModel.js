@@ -54,6 +54,15 @@ class MemoModel {
     return updatedMemo;
   }
 
+  // 메모 좋아요 증가 및 증가된 데이터 반환
+  updateLike(id) {
+    return Memo.findByIdAndUpdate(
+      id,
+      { $inc: { likeCount: 1 } }, // likeCount를 1 증가시킴
+      { new: true, fields: 'likeCount' } // 업데이트된 후의 likeCount 반환
+    ).select('_id likeCount'); // id와 likeCount만 선택적으로 반환
+  }
+
   // 특정 id를 _id로 갖고 있는 게시글 document를 삭제한다(hard delete).
   delete(id) {
     return Memo.findByIdAndDelete(
