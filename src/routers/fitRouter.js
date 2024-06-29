@@ -26,9 +26,10 @@ fitRouter.get(
 fitRouter.post(
   '/',
   asyncHandler(async (req, res, next) => {
-    const { type, targetMbti, description } = req.body;
+    const { type, mbti, targetMbti, description } = req.body;
     return await fitService.addFit({
       type,
+      mbti,
       targetMbti,
       description
     });
@@ -40,9 +41,10 @@ fitRouter.patch(
   '/:id',
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
-    const { type, targetMbti, description } = req.body;
+    const { type, mbti, targetMbti, description } = req.body;
     return await fitService.updateFit(id, {
       type,
+      mbti,
       targetMbti,
       description
     });

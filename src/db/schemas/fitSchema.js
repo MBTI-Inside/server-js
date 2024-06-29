@@ -8,6 +8,11 @@ const fitSchema = new Schema(
       required: true,
       enum: ['good', 'bad']
     },
+    // MBTI 유형
+    mbti: {
+      type: String,
+      required: true
+    },
     // 상대 MBTI 유형 (해당 MBTI와 어울리는, 어울리지 않는 MBTI 유형)
     targetMbti: {
       type: String,
