@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import fitSchema from './fitSchema';
+import fitSchema from './fitSchema.js';
 
 const mbtiSchema = new Schema(
   {
@@ -29,6 +29,11 @@ const mbtiSchema = new Schema(
     },
     // MBTI 요약 (해당 MBTI를 한 마디로 표현)
     summary: {
+      type: String,
+      required: true
+    },
+    // MBTI 설명 (해당 MBTI에 대한 설명)
+    content: {
       type: String,
       required: true
     },
