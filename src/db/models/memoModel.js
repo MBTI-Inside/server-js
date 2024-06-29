@@ -23,8 +23,14 @@ class MemoModel {
    */
 
   // 게시글 document 객체 전체를 찾아오는 메소드
-  findMemos() {
-    return Memo.find().select('-password').lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
+  findMemos(memoInfo) {
+    const { limit, skip, search } = memoInfo;
+    return Memo.find(search)
+      .select('-password') // password 필드를 제외하고 반환
+      .sort({ createdAt: -1 }) // 생성일 기준으로 내림차순 정렬
+      .skip(skip) // 페이지 시작점 설정
+      .limit(limit) // 페이지 크기 설정
+      .lean(); // lean()을 사용하여 POJO 객체 반환
   }
 
   // 특정 id를 _id로 갖는 게시글 document 객체를 찾아오는 메소드

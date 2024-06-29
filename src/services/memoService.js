@@ -8,15 +8,39 @@ class MemoService {
   getMemo(id) {
     return this.memoModel.findById(id);
   }
-  getMemos() {
-    // TODO: 댓글 수는 해당 메모 Id에 대해 댓글 수를 조회하여 count 값을 가져오는 것이 아니라
-    // 댓글을 작성할 때 해당 메모 Id에 대해 댓글 수를 업데이트 하는 방식으로 구현해야 한다.
+  // TODO: 댓글 수는 해당 메모 Id에 대해 댓글 수를 조회하여 count 값을 가져오는 것이 아니라
+  // 댓글을 작성할 때 해당 메모 Id에 대해 댓글 수를 업데이트 하는 방식으로 구현해야 한다.
 
-    // TODO: 무한스크롤 기능을 위해 limit, skip 값이 필요하다.
-    return this.memoModel.findMemos();
+  getMemos(memoInfo) {
+    const search = memoInfo.search;
+
+    let searchCriteria = {};
+    if (search) {
+      const andCriteria = [];
+
+      search.forEach((item) => {
+        if (item.field && item.text) {
+          // 이미 해당 필드에 대한 조건이 있다면 추가
+          if (searchCriteria[item.field]) {
+            andCriteria.push({
+              [item.field]: { $regex: item.text, $options: 'i' }
+            });
+          } else {
+            searchCriteria[item.field] = { $regex: item.text, $options: 'i' };
+          }
+        }
+      });
+
+      if (andCriteria.length > 0) {
+        andCriteria.push(searchCriteria);
+        searchCriteria = { $and: andCriteria };
+      }
+    }
+
+    return this.memoModel.findMemos({ ...memoInfo, search: searchCriteria });
   }
-  addMemo(memo) {
-    const hashedPassword = hashPassword(memo.password);
+  async addMemo(memo) {
+    const hashedPassword = await hashPassword(memo.password);
     return this.memoModel.create({ ...memo, password: hashedPassword });
   }
   checkMemo(id, password) {
