@@ -23,21 +23,36 @@ class MemoModel {
    */
 
   // 게시글 document 객체 전체를 찾아오는 메소드
-  findMemos() {
-    return Memo.find().lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
+  findMemos(memoInfo) {
+    const { limit, skip, search } = memoInfo;
+    return Memo.find(search)
+      .select('-password') // password 필드를 제외하고 반환
+      .sort({ createdAt: -1 }) // 생성일 기준으로 내림차순 정렬
+      .skip(skip) // 페이지 시작점 설정
+      .limit(limit) // 페이지 크기 설정
+      .lean(); // lean()을 사용하여 POJO 객체 반환
   }
 
   // 특정 id를 _id로 갖는 게시글 document 객체를 찾아오는 메소드
   findById(id) {
     return Memo.findById(
       id // document의 id, mongoDB에 저장된 _id에 저장된 값이다.
-    ).lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
+    )
+      .select('-password')
+      .lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
   }
 
   // 새로운 게시글 document 객체를 생성하여 mongoDB에 저장하는 메소드
   create(memo) {
     // 생성된 객체는 값만 있는 non-POJO 객체이다. toObject를 이용해서 POJO 객체로 바꿔준다.
-    return Memo.create(memo).toObject();
+    return Memo.create(memo).then((doc) =>
+      doc.toObject({
+        transform: (doc, ret) => {
+          delete ret.password;
+          return ret;
+        }
+      })
+    ); // password 필드를 제외하고 반환
   }
 
   // 특정 id를 _id로 갖고 있는 게시글 document를 toUpdate 객체의 내용으로 덮어 씌운다(overwrite).
@@ -50,15 +65,28 @@ class MemoModel {
         runValidators: true, // schema 체크(업데이트 될 데이터에 대한 검증)를 진행한다.
         new: true // 업데이트 후의 document를 리턴받도록 한다.
       }
-    ).lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
+    )
+      .select('-password')
+      .lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
     return updatedMemo;
+  }
+
+  // 메모 좋아요 증가 및 증가된 데이터 반환
+  updateLike(id) {
+    return Memo.findByIdAndUpdate(
+      id,
+      { $inc: { likeCount: 1 } }, // likeCount를 1 증가시킴
+      { new: true, fields: 'likeCount' } // 업데이트된 후의 likeCount 반환
+    ).select('_id likeCount'); // id와 likeCount만 선택적으로 반환
   }
 
   // 특정 id를 _id로 갖고 있는 게시글 document를 삭제한다(hard delete).
   delete(id) {
     return Memo.findByIdAndDelete(
       id // document의 id, mongoDB에 저장된 _id에 저장된 값이다.
-    ).lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
+    )
+      .select('-password')
+      .lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
   }
 }
 
