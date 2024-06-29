@@ -26,10 +26,11 @@ fitRouter.get(
 fitRouter.post(
   '/',
   asyncHandler(async (req, res, next) => {
-    const { title, content } = req.body;
+    const { type, targetMbti, description } = req.body;
     return await fitService.addFit({
-      title,
-      content
+      type,
+      targetMbti,
+      description
     });
   })
 );
@@ -39,10 +40,11 @@ fitRouter.patch(
   '/:id',
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
-    const { title, content } = req.body;
+    const { type, targetMbti, description } = req.body;
     return await fitService.updateFit(id, {
-      title,
-      content
+      type,
+      targetMbti,
+      description
     });
   })
 );
