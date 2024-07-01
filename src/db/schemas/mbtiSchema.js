@@ -51,7 +51,8 @@ const mbtiSchema = new Schema(
     // 해당 MBTI와 어울림
     fit: {
       type: [fitSchema], // fit은 fitSchema 타입의 객체 배열 (good, bad)
-      required: true
+      required: true,
+      _id: false // 하위 스키마는 id 생성하지 않는다.
     },
     // 해당 MBTI 유형 결과 수치
     count: {
