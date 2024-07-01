@@ -34,6 +34,15 @@ class FitModel {
     ).lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
   }
 
+  // 특정 type을 갖는 어울림 document 객체 배열을 찾아오는 메소드
+  findByType(type) {
+    return Fit.find({
+      mbti: type
+    })
+      .select('-_id') // 다른 스키마의 하위 스키마로 생성될 것이기 때문에 _id를 제외한다.
+      .lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
+  }
+
   // 새로운 어울림 document 객체를 생성하여 mongoDB에 저장하는 메소드
   create(fit) {
     // 생성된 객체는 값만 있는 non-POJO 객체이다. toObject를 이용해서 POJO 객체로 바꿔준다.
