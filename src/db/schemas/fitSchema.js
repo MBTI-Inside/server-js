@@ -44,7 +44,6 @@ const fitSchema = new Schema(
   },
   {
     collection: 'fit',
-    timestamps: true,
     versionKey: false
   }
 );
