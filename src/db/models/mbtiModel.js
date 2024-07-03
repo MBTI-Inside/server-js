@@ -27,6 +27,10 @@ class MbtiModel {
     return Mbti.find().lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
   }
 
+  // 새로운 MBTI document 객체를 생성하여 mongoDB에 저장하는 메소드
+  create(mbti) {
+    return Mbti.create(mbti).then((doc) => doc.toObject());
+  }
   // 특정 id를 _id로 갖고 있는 MBTI document를 toUpdate 객체의 내용으로 덮어 씌운다(overwrite).
   // 덮어 씌우는 것이기 때문에 잘못된 값이 의도치 않게 들어가면 문제가 발생할 수 있다.
   update(type) {

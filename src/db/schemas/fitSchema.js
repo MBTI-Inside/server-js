@@ -8,10 +8,28 @@ const fitSchema = new Schema(
       required: true,
       enum: ['good', 'bad']
     },
-    // 해당 MBTI 유형
+    // MBTI 유형
     mbti: {
       type: String,
-      required: true
+      required: true,
+      enum: [
+        'ISTJ',
+        'ISFJ',
+        'INFJ',
+        'INTJ',
+        'ISTP',
+        'ISFP',
+        'INFP',
+        'INTP',
+        'ESTP',
+        'ESFP',
+        'ENFP',
+        'ENTP',
+        'ESTJ',
+        'ESFJ',
+        'ENFJ',
+        'ENTJ'
+      ]
     },
     // 상대 MBTI 유형 (해당 MBTI와 어울리는, 어울리지 않는 MBTI 유형)
     targetMbti: {
@@ -26,7 +44,6 @@ const fitSchema = new Schema(
   },
   {
     collection: 'fit',
-    timestamps: true,
     versionKey: false
   }
 );

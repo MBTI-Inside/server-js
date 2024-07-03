@@ -23,7 +23,8 @@ const answerSchema = new Schema(
     }
   },
   {
-    _id: false // 이 서브 스키마에 대해 id 생성 안 함
+    collection: 'answer',
+    versionKey: false
   }
 );
 

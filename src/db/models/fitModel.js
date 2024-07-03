@@ -34,18 +34,27 @@ class FitModel {
     ).lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
   }
 
+  // 특정 type을 갖는 어울림 document 객체 배열을 찾아오는 메소드
+  findByType(type) {
+    return Fit.find({
+      mbti: type
+    })
+      .select('-_id') // 다른 스키마의 하위 스키마로 생성될 것이기 때문에 _id를 제외한다.
+      .lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
+  }
+
   // 새로운 어울림 document 객체를 생성하여 mongoDB에 저장하는 메소드
   create(fit) {
     // 생성된 객체는 값만 있는 non-POJO 객체이다. toObject를 이용해서 POJO 객체로 바꿔준다.
-    return Fit.create(fit).toObject();
+    return Fit.create(fit).then((doc) => doc.toObject());
   }
 
   // 특정 id를 _id로 갖고 있는 어울림 document를 toUpdate 객체의 내용으로 덮어 씌운다(overwrite).
   // 덮어 씌우는 것이기 때문에 잘못된 값이 의도치 않게 들어가면 문제가 발생할 수 있다.
-  update(id, board) {
+  update(id, fit) {
     const updatedFit = Fit.findByIdAndUpdate(
       id, // document의 id, mongoDB에 저장된 _id에 저장된 값이다.
-      board,
+      fit,
       {
         runValidators: true, // schema 체크(업데이트 될 데이터에 대한 검증)를 진행한다.
         new: true // 업데이트 후의 document를 리턴받도록 한다.

@@ -13,6 +13,6 @@ v1Router.use('/memos', memoRouter);
 v1Router.use('/comments', commentRouter);
 v1Router.use('/surveys', surveyRouter);
 v1Router.use('/fits', fitRouter);
-v1Router.use('/mbits', mbtiRouter);
+v1Router.use('/mbtis', mbtiRouter);
 
 export const v1 = v1Router;
