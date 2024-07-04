@@ -15,7 +15,7 @@ const surveySchema = new Schema(
       required: true,
       validate: {
         validator: function (v) {
-          return v.length > 1;
+          return v.length === 2;
         },
         message: 'Answer array must have two answers'
       }
