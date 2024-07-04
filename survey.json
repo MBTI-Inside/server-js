@@ -1,0 +1,466 @@
+[
+  {
+    "subject": "바쁜 회사 생활을 보낸 당신. 황금 같은 주말을 어떻게 보내려고 할까?",
+    "answer": [
+      {
+        "type": "I",
+        "content": "주중 회사(실외)였으니 주말엔 집에서 쉬어야지~",
+        "proportion": 30
+      },
+      {
+        "type": "E",
+        "content": "주중 회사(실내)였으니 주말엔 밖에 나가서 놀아야지!",
+        "proportion": 70
+      }
+    ],
+    "mbtiType": "energy"
+  },
+  {
+    "subject": "친구와 1시간이 넘는 통화를 마친 뒤 당신의 상태는?",
+    "answer": [
+      {
+        "type": "E",
+        "content": "남은 얘기는 만나서 해야징",
+        "proportion": 85
+      },
+      {
+        "type": "I",
+        "content": "통화가 끝났으니 이제 쉬어야지..",
+        "proportion": 15
+      }
+    ],
+    "mbtiType": "energy"
+  },
+  {
+    "subject": "내가 더 잘 알고 있는 것은?",
+    "answer": [
+      {
+        "type": "E",
+        "content": "상대방을 기분 좋게 하는 방법",
+        "proportion": 35
+      },
+      {
+        "type": "I",
+        "content": "상대방을 기분 나쁘지 않게 배려하는 방법",
+        "proportion": 65
+      }
+    ],
+    "mbtiType": "energy"
+  },
+  {
+    "subject": "나는 새로운 사람을 만나면..",
+    "answer": [
+      {
+        "type": "E",
+        "content": "침묵을 견디지 못하고 무슨 말이라도 걸어 본다.",
+        "proportion": 43
+      },
+      {
+        "type": "I",
+        "content": "누군가 먼저 말을 걸지 않으면 웬만해선 먼저 말을 걸지 않는다.",
+        "proportion": 57
+      }
+    ],
+    "mbtiType": "energy"
+  },
+  {
+    "subject": "친구들과의 만남이 끝나고 집에 돌아올 때 나는?",
+    "answer": [
+      {
+        "type": "E",
+        "content": "아 잘 놀았다! 충전 완료!",
+        "proportion": 67
+      },
+      {
+        "type": "I",
+        "content": "아 잘 놀았다! 이제 집 가서 혼자 쉬어야지",
+        "proportion": 33
+      }
+    ],
+    "mbtiType": "energy"
+  },
+  {
+    "subject": "친구가 갑자기 집에 찾아왔다면?",
+    "answer": [
+      {
+        "type": "E",
+        "content": "왜 왔어? 일단 들어와!",
+        "proportion": 72
+      },
+      {
+        "type": "I",
+        "content": "갑자기? 왜 말도 안하고 왔어?",
+        "proportion": 28
+      }
+    ],
+    "mbtiType": "energy"
+  },
+  {
+    "subject": "모임에서 자리가 중간과 끝자리만 딱 남았을 때 나는?",
+    "answer": [
+      {
+        "type": "E",
+        "content": "중간에 앉아야지 소통을 편하고 즐겁게 할 수 있을 것 같아.",
+        "proportion": 19
+      },
+      {
+        "type": "I",
+        "content": "끝자리에 앉아야지 누가 나한테 말을 안 걸겠지?",
+        "proportion": 81
+      }
+    ],
+    "mbtiType": "energy"
+  },
+  {
+    "subject": "오랜만에 만난 친구가 갑자기 다른 친구도 불러도 되냐고 물어본다면?",
+    "answer": [
+      {
+        "type": "E",
+        "content": "당연히 괜찮지! 친구 한 명 더 생겼네!",
+        "proportion": 43
+      },
+      {
+        "type": "I",
+        "content": "어.. 갑자기? (불편한데..)",
+        "proportion": 57
+      }
+    ],
+    "mbtiType": "energy"
+  },
+  {
+    "subject": "비행기를 탔는데 갑자기 흔들린다면?",
+    "answer": [
+      {
+        "type": "S",
+        "content": "비행기가 흔들리네 무섭다. 멀미난다.",
+        "proportion": 70
+      },
+      {
+        "type": "N",
+        "content": "비행기가 왜 흔들리지?",
+        "proportion": 30
+      }
+    ],
+    "mbtiType": "awareness"
+  },
+  {
+    "subject": "점심을 먹을 때 나는?",
+    "answer": [
+      {
+        "type": "S",
+        "content": "김치찌개 된장찌개 메뉴를 고민하다 하나를 선택해서 먹는중",
+        "proportion": 42
+      },
+      {
+        "type": "N",
+        "content": "점심 먹으면서 저녁 뭐먹을지 생각중",
+        "proportion": 58
+      }
+    ],
+    "mbtiType": "awareness"
+  },
+  {
+    "subject": "얼마 남지 않은 시험, 공부가 손에 잡히지 않을 때 드는 생각은?",
+    "answer": [
+      {
+        "type": "S",
+        "content": "단기간에 외울 수 있는 방법엔 뭐가 있을까?",
+        "proportion": 55
+      },
+      {
+        "type": "N",
+        "content": "시험이 없는 세상은 어떨까?",
+        "proportion": 45
+      }
+    ],
+    "mbtiType": "awareness"
+  },
+  {
+    "subject": "달리는 버스 안에서 창밖을 바라보고 있다. 이때 드는 생각은?",
+    "answer": [
+      {
+        "type": "S",
+        "content": "와 날씨 좋다! 피크닉 가고 싶네.",
+        "proportion": 41
+      },
+      {
+        "type": "N",
+        "content": "버스 기사님은 매일 보는 이 풍경이 지루하지 않으실까?",
+        "proportion": 59
+      }
+    ],
+    "mbtiType": "awareness"
+  },
+  {
+    "subject": "1분 동안 눈을 감고 있어보자. 1분 동안의 나는…",
+    "answer": [
+      {
+        "type": "S",
+        "content": "1분 언제 끝나지? 43, 44, 45...",
+        "proportion": 22
+      },
+      {
+        "type": "N",
+        "content": "지나가는 1초 1초가 전부 과거다.",
+        "proportion": 78
+      }
+    ],
+    "mbtiType": "awareness"
+  },
+  {
+    "subject": "풍선을 보며 떠오르는 생각은?",
+    "answer": [
+      {
+        "type": "S",
+        "content": "와 풍선! 놀이공원 가고 싶다.",
+        "proportion": 40
+      },
+      {
+        "type": "N",
+        "content": "헬륨 마시면 목소리 웃기겠다ㅋㅋ 봄바람 휘날리 며헌~",
+        "proportion": 60
+      }
+    ],
+    "mbtiType": "awareness"
+  },
+  {
+    "subject": "가족여행을 다녀오면서 애인에게 국내에서 못 구하는 과자를 한 바구니 사주었다. 하지만 애인이 회사 동료들과 나누어 먹었다.",
+    "answer": [
+      {
+        "type": "T",
+        "content": "동료들이 좋아했겠네~ 잘 먹었음 됬어!",
+        "proportion": 56
+      },
+      {
+        "type": "F",
+        "content": "너 먹으라고 준건데 왜 나눠 먹어? 좋은게 좋은 거지만 좀 서운하네..",
+        "proportion": 44
+      }
+    ],
+    "mbtiType": "judgement"
+  },
+  {
+    "subject": "시험이 끝난 후 친구의 한 마디, \"와! 너 열심히 안했는데 성적 이정도면 진짜 재능 있는듯 ㅎㅎ\"",
+    "answer": [
+      {
+        "type": "T",
+        "content": "나 열심히 했는데? 재능 있는 것도 맞지ㅋㅋ",
+        "proportion": 63
+      },
+      {
+        "type": "F",
+        "content": "나 열심히 했는데? 너가 뭔데 내 노력을 평가해ㅠㅠ?",
+        "proportion": 37
+      }
+    ],
+    "mbtiType": "judgement"
+  },
+  {
+    "subject": "\"다음 주말에 뭐해?\"라는 말의 의미는?",
+    "answer": [
+      {
+        "type": "T",
+        "content": "다음 주말에 약속 있어?",
+        "proportion": 41
+      },
+      {
+        "type": "F",
+        "content": "우리 만나자!",
+        "proportion": 59
+      }
+    ],
+    "mbtiType": "judgement"
+  },
+  {
+    "subject": "어떠한 제안을 받았을 때, 내가 말하는 \"생각해볼게\"의 진짜 의미는?",
+    "answer": [
+      {
+        "type": "F",
+        "content": "아 싫은데.. 나중에 거절해야겠다.",
+        "proportion": 76
+      },
+      {
+        "type": "T",
+        "content": "괜찮겠네? 생각해볼게!",
+        "proportion": 24
+      }
+    ],
+    "mbtiType": "judgement"
+  },
+  {
+    "subject": "\"나 우울해서 선인장 샀어\"라고 친구에게 연락이 왔다면?",
+    "answer": [
+      {
+        "type": "T",
+        "content": "왠 선인장??",
+        "proportion": 75
+      },
+      {
+        "type": "F",
+        "content": "왜 우울해??",
+        "proportion": 25
+      }
+    ],
+    "mbtiType": "judgement"
+  },
+  {
+    "subject": "열심히 준비한 프로젝트 발표가 끝났다.",
+    "answer": [
+      {
+        "type": "T",
+        "content": "잘했네!",
+        "proportion": 43
+      },
+      {
+        "type": "F",
+        "content": "고생했네!",
+        "proportion": 57
+      }
+    ],
+    "mbtiType": "judgement"
+  },
+  {
+    "subject": "오늘은 월급날..! 닌텐도 스위치를 사야겠다.",
+    "answer": [
+      {
+        "type": "J",
+        "content": "생활비 빼니까 돈이 애매하네? 다음 달에 사야지",
+        "proportion": 72
+      },
+      {
+        "type": "P",
+        "content": "일단 사! 이번 달은 라면으로 버틴다!",
+        "proportion": 28
+      }
+    ],
+    "mbtiType": "life"
+  },
+  {
+    "subject": "나에게 약속이란?",
+    "answer": [
+      {
+        "type": "J",
+        "content": "약속은 지키라고 있는 거야!",
+        "proportion": 64
+      },
+      {
+        "type": "P",
+        "content": "약속은 깨라고 있는 거야~",
+        "proportion": 36
+      }
+    ],
+    "mbtiType": "life"
+  },
+  {
+    "subject": "메일을 보내던 중 해킹 의심 알림이 떴다.",
+    "answer": [
+      {
+        "type": "P",
+        "content": "일단 메일을 마저 보낸다.",
+        "proportion": 61
+      },
+      {
+        "type": "J",
+        "content": "비밀번호부터 변경한다.",
+        "proportion": 39
+      }
+    ],
+    "mbtiType": "life"
+  },
+  {
+    "subject": "오늘 할 일을 끝내지 못하고 침대에 누웠다.",
+    "answer": [
+      {
+        "type": "J",
+        "content": "(아.. 찝찝한데..) 다시 일어나서 일을 마치고 잔다.",
+        "proportion": 58
+      },
+      {
+        "type": "P",
+        "content": "아 졸려.. 내일 해도 되겠지? 내일 하자.",
+        "proportion": 42
+      }
+    ],
+    "mbtiType": "life"
+  },
+  {
+    "subject": "약속이 취소되었을 때 나는?",
+    "answer": [
+      {
+        "type": "J",
+        "content": "아 오늘 놀아야 내일 편하게 쉬는데.. 다른 약속을 잡아볼까?",
+        "proportion": 56
+      },
+      {
+        "type": "P",
+        "content": "혼자 놀지 뭐! 저기 새로 생긴 곳이나 가볼까?",
+        "proportion": 44
+      }
+    ],
+    "mbtiType": "life"
+  },
+  {
+    "subject": "친구들을 집에 초대하고 음식을 준비할 때 내 생각은?",
+    "answer": [
+      {
+        "type": "P",
+        "content": "이정도면 되겠지? 모자라면 더 시켜 먹지 뭐~",
+        "proportion": 65
+      },
+      {
+        "type": "J",
+        "content": "8명이면 이정도 양이면 살짝 남을 것 같네. 모자라면 더 시키자.",
+        "proportion": 35
+      }
+    ],
+    "mbtiType": "life"
+  },
+  {
+    "subject": "카페에 부서진 의자가 보일 때 드는 생각은?",
+    "answer": [
+      {
+        "type": "N",
+        "content": "설마 앉다가 부러진 건가?",
+        "proportion": 78
+      },
+      {
+        "type": "S",
+        "content": "인스타 감성인가?",
+        "proportion": 22
+      }
+    ],
+    "mbtiType": "awareness"
+  },
+  {
+    "subject": "친구가 내가 잘 모르는 사람이 뒤에서 내 욕을 했다는 걸 알려줬다.",
+    "answer": [
+      {
+        "type": "T",
+        "content": "왜? 뭐라고?",
+        "proportion": 88
+      },
+      {
+        "type": "F",
+        "content": "왜? (걔한테 잘못한 게 있나?)",
+        "proportion": 12
+      }
+    ],
+    "mbtiType": "judgement"
+  },
+  {
+    "subject": "",
+    "answer": [
+      {
+        "type": "",
+        "content": "",
+        "proportion": 0
+      },
+      {
+        "type": "",
+        "content": "",
+        "proportion": 0
+      }
+    ],
+    "mbtiType": ""
+  }
+]
