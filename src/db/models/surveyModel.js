@@ -34,6 +34,40 @@ class SurveyModel {
     ).lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
   }
 
+  findMbtiSurveys() {
+    return Survey.aggregate([
+      {
+        $facet: {
+          energy: [
+            { $match: { mbtiType: 'energy' } },
+            { $sample: { size: 4 } }
+          ],
+          awareness: [
+            { $match: { mbtiType: 'awareness' } },
+            { $sample: { size: 4 } }
+          ],
+          judgement: [
+            { $match: { mbtiType: 'judgement' } },
+            { $sample: { size: 4 } }
+          ],
+          life: [{ $match: { mbtiType: 'life' } }, { $sample: { size: 4 } }]
+        }
+      },
+      // $facet의 결과를 합치는 단계
+      {
+        $project: {
+          combined: {
+            $concatArrays: ['$energy', '$awareness', '$life', '$judgement']
+          }
+        }
+      },
+      // combined 배열을 풀어내는 단계
+      { $unwind: '$combined' },
+      // 필요한 필드만 선택
+      { $replaceRoot: { newRoot: '$combined' } }
+    ]);
+  }
+
   // 새로운 문항 document 객체를 생성하여 mongoDB에 저장하는 메소드
   create(survey) {
     // 생성된 객체는 값만 있는 non-POJO 객체이다. toObject를 이용해서 POJO 객체로 바꿔준다.
