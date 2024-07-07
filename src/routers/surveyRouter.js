@@ -22,14 +22,22 @@ surveyRouter.get(
   })
 );
 
+surveyRouter.get(
+  '/mbti/test',
+  asyncHandler(async (req, res, next) => {
+    return await surveyService.getMbtiSurveys();
+  })
+);
+
 // Survey 저장
 surveyRouter.post(
   '/',
   asyncHandler(async (req, res, next) => {
-    const { title, content } = req.body;
+    const { subject, answer, mbtiType } = req.body;
     return await surveyService.addSurvey({
-      title,
-      content
+      subject,
+      answer,
+      mbtiType
     });
   })
 );
@@ -39,10 +47,11 @@ surveyRouter.patch(
   '/:id',
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
-    const { title, content } = req.body;
+    const { subject, answer, mbtiType } = req.body;
     return await surveyService.updateSurvey(id, {
-      title,
-      content
+      subject,
+      answer,
+      mbtiType
     });
   })
 );

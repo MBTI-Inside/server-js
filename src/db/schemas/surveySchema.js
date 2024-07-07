@@ -15,10 +15,11 @@ const surveySchema = new Schema(
       required: true,
       validate: {
         validator: function (v) {
-          return v.length > 1;
+          return v.length === 2;
         },
         message: 'Answer array must have two answers'
-      }
+      },
+      _id: false // 하위 스키마는 id 생성하지 않는다.
     },
     // 문항 타입 (어떤 유형에 해당되는 타입인지)
     mbtiType: {

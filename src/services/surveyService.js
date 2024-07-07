@@ -1,4 +1,5 @@
 import { SurveyModel } from '../db/models/index.js';
+import { shuffleArray } from '../utils/common.js';
 
 class SurveyService {
   constructor() {
@@ -9,6 +10,17 @@ class SurveyService {
   }
   getSurveys() {
     return this.surveyModel.findSurveys();
+  }
+  async getMbtiSurveys() {
+    const mbtiSurveys = await this.surveyModel.findMbtiSurveys();
+
+    // 각 문항의 answer 배열을 랜덤하게 섞음
+    mbtiSurveys.forEach((survey) => {
+      survey.answer = shuffleArray(survey.answer);
+    });
+
+    // 전체 배열을 랜덤하게 섞음
+    return shuffleArray(mbtiSurveys);
   }
   addSurvey(survey) {
     return this.surveyModel.create(survey);

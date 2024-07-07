@@ -30,3 +30,18 @@ export const setKoreaDay = (date) => {
 
   return day;
 };
+
+/**
+ * 작성자명 : 원종석
+ * 작성일자 : 2024-07-08 (월)
+ * 작성내용 : 입력받은 배열을 랜덤하게 인덱스를 섞는다.
+ * @param {Array} array 객체 형태의 배열
+ * @returns 배열
+ */
+export const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};

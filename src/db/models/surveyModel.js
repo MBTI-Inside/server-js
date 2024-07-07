@@ -34,10 +34,47 @@ class SurveyModel {
     ).lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
   }
 
+  findMbtiSurveys() {
+    // TODO: MBTI 유형 및 문항 숫자가 하드코딩되어 있음. 바꿀 수 있어야 한다.
+    // cf) 사용자가 어떤 유형에 대해서만 검사할 것인지를 먼저 판단하고, 몇 문항씩 테스트할 지를 판단 후 데이터를 입력해서 테스트할 수 있게 한다면?
+    // ex) 사용자는 T, F에 대한 유형검사만 10문항에 대해서 진행하고 싶다. 그럼 judgement 키워드와, size는 10을 입력하면 그 데이터만 표시하게 된다.
+    return Survey.aggregate([
+      {
+        $facet: {
+          energy: [
+            { $match: { mbtiType: 'energy' } },
+            { $sample: { size: 4 } }
+          ],
+          awareness: [
+            { $match: { mbtiType: 'awareness' } },
+            { $sample: { size: 4 } }
+          ],
+          judgement: [
+            { $match: { mbtiType: 'judgement' } },
+            { $sample: { size: 4 } }
+          ],
+          life: [{ $match: { mbtiType: 'life' } }, { $sample: { size: 4 } }]
+        }
+      },
+      // $facet의 결과를 합치는 단계
+      {
+        $project: {
+          combined: {
+            $concatArrays: ['$energy', '$awareness', '$life', '$judgement']
+          }
+        }
+      },
+      // combined 배열을 풀어내는 단계
+      { $unwind: '$combined' },
+      // 필요한 필드만 선택
+      { $replaceRoot: { newRoot: '$combined' } }
+    ]);
+  }
+
   // 새로운 문항 document 객체를 생성하여 mongoDB에 저장하는 메소드
   create(survey) {
     // 생성된 객체는 값만 있는 non-POJO 객체이다. toObject를 이용해서 POJO 객체로 바꿔준다.
-    return Survey.create(survey).toObject();
+    return Survey.create(survey).then((doc) => doc.toObject());
   }
 
   // 특정 id를 _id로 갖고 있는 문항 document를 toUpdate 객체의 내용으로 덮어 씌운다(overwrite).
