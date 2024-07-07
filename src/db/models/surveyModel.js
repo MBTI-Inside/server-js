@@ -35,6 +35,9 @@ class SurveyModel {
   }
 
   findMbtiSurveys() {
+    // TODO: MBTI 유형 및 문항 숫자가 하드코딩되어 있음. 바꿀 수 있어야 한다.
+    // cf) 사용자가 어떤 유형에 대해서만 검사할 것인지를 먼저 판단하고, 몇 문항씩 테스트할 지를 판단 후 데이터를 입력해서 테스트할 수 있게 한다면?
+    // ex) 사용자는 T, F에 대한 유형검사만 10문항에 대해서 진행하고 싶다. 그럼 judgement 키워드와, size는 10을 입력하면 그 데이터만 표시하게 된다.
     return Survey.aggregate([
       {
         $facet: {

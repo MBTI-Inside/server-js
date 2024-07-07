@@ -25,7 +25,7 @@ surveyRouter.get(
 surveyRouter.get(
   '/mbti/test',
   asyncHandler(async (req, res, next) => {
-    return await surveyService.getMbtiSurveys(); // TODO: 랜덤 16개 문항 뽑기 (energy 4, awareness 4, judgement 4, life 4)
+    return await surveyService.getMbtiSurveys();
   })
 );
 
