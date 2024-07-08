@@ -23,14 +23,10 @@ mbtiRouter.post(
 );
 // Mbti 수정
 mbtiRouter.patch(
-  '/:id',
+  '/:type',
   asyncHandler(async (req, res, next) => {
-    const { id } = req.params;
-    const { title, content } = req.body;
-    return await mbtiService.updateMbti(id, {
-      title,
-      content
-    });
+    const { type } = req.params;
+    return await mbtiService.updateMbti(type);
   })
 );
 
