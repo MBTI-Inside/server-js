@@ -31,6 +31,7 @@ class MbtiModel {
   create(mbti) {
     return Mbti.create(mbti).then((doc) => doc.toObject());
   }
+
   // 특정 id를 _id로 갖고 있는 MBTI document를 toUpdate 객체의 내용으로 덮어 씌운다(overwrite).
   // 덮어 씌우는 것이기 때문에 잘못된 값이 의도치 않게 들어가면 문제가 발생할 수 있다.
   update(type) {
@@ -38,9 +39,7 @@ class MbtiModel {
       { type },
       { $inc: { count: 1 } },
       {
-        runValidators: true, // schema 체크(업데이트 될 데이터에 대한 검증)를 진행한다.
-        new: true, // 업데이트 후의 document를 리턴받도록 한다.
-        upsert: true // upsert 옵션을 사용하여 문서가 없으면 새로 생성
+        new: true // 업데이트 후의 document를 리턴받도록 한다.
       }
     ).lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
     return updatedMbti;
