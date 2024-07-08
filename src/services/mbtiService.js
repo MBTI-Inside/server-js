@@ -12,8 +12,8 @@ class MbtiService {
     const fits = await this.fitModel.findByType(mbti.type);
     return this.mbtiModel.create({ ...mbti, fit: fits });
   }
-  updateMbti(id, mbti) {
-    return this.mbtiModel.update(id, mbti);
+  updateMbti(mbti) {
+    return this.mbtiModel.update(mbti);
   }
 }
 
