@@ -23,8 +23,14 @@ class SurveyModel {
    */
 
   // 문항 document 객체 전체를 찾아오는 메소드
-  findSurveys() {
-    return Survey.find().lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
+  findSurveys(searchInfo) {
+    const { limit, skip } = searchInfo;
+    return Survey.aggregate([
+      { $skip: skip },
+      { $limit: limit },
+      { $sort: { createdAt: -1 } }
+    ]);
+    // return Survey.find().lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
   }
 
   // 특정 id를 _id로 갖는 문항 document 객체를 찾아오는 메소드
