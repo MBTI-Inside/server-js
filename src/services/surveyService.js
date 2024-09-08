@@ -8,8 +8,8 @@ class SurveyService {
   getSurvey(id) {
     return this.surveyModel.findById(id);
   }
-  getSurveys() {
-    return this.surveyModel.findSurveys();
+  getSurveys(searchInfo) {
+    return this.surveyModel.findSurveys(searchInfo);
   }
   async getMbtiSurveys() {
     const mbtiSurveys = await this.surveyModel.findMbtiSurveys();

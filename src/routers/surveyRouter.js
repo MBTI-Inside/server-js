@@ -18,7 +18,11 @@ surveyRouter.get(
 surveyRouter.get(
   '/',
   asyncHandler(async (req, res, next) => {
-    return await surveyService.getSurveys();
+    const { limit, skip } = req.query;
+    return await surveyService.getSurveys({
+      limit: Number(limit),
+      skip: Number(skip)
+    });
   })
 );
 
