@@ -8,6 +8,9 @@ class MbtiService {
   getMbtis() {
     return this.mbtiModel.findMbtis();
   }
+  getMbti(type) {
+    return this.mbtiModel.findMbti(type);
+  }
   async createMbti(mbti) {
     const fits = await this.fitModel.findByType(mbti.type);
     return this.mbtiModel.create({ ...mbti, fit: fits });

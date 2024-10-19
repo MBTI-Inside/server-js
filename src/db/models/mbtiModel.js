@@ -27,6 +27,10 @@ class MbtiModel {
     return Mbti.find().lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
   }
 
+  findMbti(type) {
+    return Mbti.findOne({ type }).lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
+  }
+
   // 새로운 MBTI document 객체를 생성하여 mongoDB에 저장하는 메소드
   create(mbti) {
     return Mbti.create(mbti).then((doc) => doc.toObject());
