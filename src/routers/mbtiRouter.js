@@ -13,6 +13,14 @@ mbtiRouter.get(
   })
 );
 
+mbtiRouter.get(
+  '/:type',
+  asyncHandler(async (req, res, next) => {
+    const { type } = req.params;
+    return await mbtiService.getMbti(type);
+  })
+);
+
 // Mbti 등록 (초기값 세팅)
 mbtiRouter.post(
   '/',
