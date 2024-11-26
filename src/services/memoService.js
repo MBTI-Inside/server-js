@@ -1,5 +1,6 @@
 import { MemoModel } from '../db/models/index.js';
 import { hashPassword, compareHashPassword } from '../misc/utils.js';
+import AppError from '../misc/AppError.js';
 
 class MemoService {
   constructor() {
@@ -43,9 +44,14 @@ class MemoService {
     const hashedPassword = await hashPassword(memo.password);
     return this.memoModel.create({ ...memo, password: hashedPassword });
   }
-  checkMemo(id, password) {
-    const memo = this.memoModel.findById(id);
-    const isPasswordCorrect = compareHashPassword(password, memo.password);
+  async checkMemo(id, password) {
+    const memo = await this.memoModel.findById(id, true);
+    const isPasswordCorrect = await compareHashPassword(
+      password,
+      memo.password
+    );
+
+    console.log(isPasswordCorrect);
     if (!isPasswordCorrect) {
       throw new AppError('Bad Request', 400, '비밀번호를 확인해 주세요.');
     }

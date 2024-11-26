@@ -34,11 +34,11 @@ class MemoModel {
   }
 
   // 특정 id를 _id로 갖는 게시글 document 객체를 찾아오는 메소드
-  findById(id) {
+  findById(id, checkPassword = false) {
     return Memo.findById(
       id // document의 id, mongoDB에 저장된 _id에 저장된 값이다.
     )
-      .select('-password')
+      .select(checkPassword ? '' : '-password')
       .lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
   }
 
