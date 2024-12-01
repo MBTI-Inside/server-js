@@ -1,9 +1,10 @@
-import { CommentModel } from '../db/models/index.js';
+import { CommentModel, MemoModel } from '../db/models/index.js';
 import { hashPassword, compareHashPassword } from '../misc/utils.js';
 
 class CommentService {
   constructor() {
     this.commentModel = new CommentModel();
+    this.memoModel = new MemoModel();
   }
   getComment(id) {
     return this.commentModel.findById(id);
@@ -13,7 +14,14 @@ class CommentService {
   }
   async addComment(comment) {
     const hashedPassword = await hashPassword(comment.password);
-    return this.commentModel.create({ ...comment, password: hashedPassword });
+    const response = await this.commentModel.create({
+      ...comment,
+      password: hashedPassword
+    });
+
+    const { memoCmtCount } = await this.memoModel.updateMemoCmt(comment.memoId);
+
+    return response;
   }
   async checkComment(id, password) {
     const comment = await this.commentModel.findById(id, true);
