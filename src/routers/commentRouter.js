@@ -7,7 +7,7 @@ const commentService = new CommentService();
 
 // Comment 조회
 commentRouter.get(
-  '/:id',
+  '/id/:id',
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
     return await commentService.getComment(id);
@@ -16,21 +16,36 @@ commentRouter.get(
 
 // Comment 전체 조회
 commentRouter.get(
-  '/',
+  '/:memoId',
   asyncHandler(async (req, res, next) => {
-    return await commentService.getComments();
+    const { memoId } = req.params;
+    return await commentService.getComments(memoId);
   })
 );
 
 // Comment 저장
 commentRouter.post(
-  '/',
+  '/:memoId',
   asyncHandler(async (req, res, next) => {
-    const { title, content } = req.body;
+    const { memoId } = req.params;
+    const { nickName, parentCommentId = null, content, password } = req.body;
     return await commentService.addComment({
-      title,
-      content
+      memoId,
+      parentCommentId,
+      nickName,
+      content,
+      password
     });
+  })
+);
+
+// Comment 수정 시 비밀번호 입력 검증
+commentRouter.post(
+  '/id/:id',
+  asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const { password } = req.body;
+    return await commentService.checkComment(id, password);
   })
 );
 
@@ -39,11 +54,22 @@ commentRouter.patch(
   '/:id',
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
-    const { title, content } = req.body;
+    const { nickName, parentCommentId, content, password } = req.body;
     return await commentService.updateComment(id, {
-      title,
-      content
+      parentCommentId,
+      nickName,
+      content,
+      password
     });
+  })
+);
+
+// Memo 좋아요 처리
+commentRouter.patch(
+  '/:id/like',
+  asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    return await commentService.updateCommentLike(id);
   })
 );
 

@@ -3,9 +3,9 @@ import { Schema } from 'mongoose';
 const commentSchema = new Schema(
   {
     // 메모 Id
-    boardId: {
+    memoId: {
       type: Schema.Types.ObjectId,
-      ref: 'Board',
+      ref: 'Memo',
       required: true
     },
     // 댓글 부모 Id
@@ -13,6 +13,11 @@ const commentSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Comment',
       required: false
+    },
+    // 댓글 닉네임
+    nickName: {
+      type: String,
+      required: true
     },
     // 댓글 내용
     content: {
@@ -24,13 +29,8 @@ const commentSchema = new Schema(
       type: String,
       required: true
     },
-    // 댓글 프로필 색상
-    color: {
-      type: String,
-      required: true
-    },
     // 공감 수
-    like: {
+    likeCount: {
       type: Number,
       required: true,
       default: 0

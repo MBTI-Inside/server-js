@@ -1,4 +1,5 @@
 import { CommentModel } from '../db/models/index.js';
+import { hashPassword, compareHashPassword } from '../misc/utils.js';
 
 class CommentService {
   constructor() {
@@ -7,14 +8,34 @@ class CommentService {
   getComment(id) {
     return this.commentModel.findById(id);
   }
-  getComments() {
-    return this.commentModel.findComments();
+  getComments(memoId) {
+    return this.commentModel.findComments(memoId);
   }
-  addComment(comment) {
-    return this.commentModel.create(comment);
+  async addComment(comment) {
+    const hashedPassword = await hashPassword(comment.password);
+    return this.commentModel.create({ ...comment, password: hashedPassword });
   }
-  updateComment(id, comment) {
-    return this.commentModel.update(id, comment);
+  async checkComment(id, password) {
+    const comment = await this.commentModel.findById(id, true);
+    const isPasswordCorrect = await compareHashPassword(
+      password,
+      comment.password
+    );
+
+    if (!isPasswordCorrect) {
+      throw new AppError('Bad Request', 400, '비밀번호를 확인해 주세요.');
+    }
+    return comment;
+  }
+  async updateComment(id, comment) {
+    const hashedPassword = await hashPassword(comment.password);
+    return this.commentModel.update(id, {
+      ...comment,
+      password: hashedPassword
+    });
+  }
+  updateMemoLike(id) {
+    return this.commentModel.updateLike(id);
   }
   deleteComment(id) {
     return this.commentModel.delete(id);

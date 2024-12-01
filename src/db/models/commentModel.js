@@ -23,35 +23,55 @@ class CommentModel {
    */
 
   // 댓글 document 객체 전체를 찾아오는 메소드
-  findComments() {
-    return Comment.find().lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
+  findComments(memoId) {
+    return Comment.find({ memoId }).lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
   }
 
   // 특정 id를 _id로 갖는 댓글 document 객체를 찾아오는 메소드
-  findById(id) {
+  findById(id, checkPassword = false) {
     return Comment.findById(
       id // document의 id, mongoDB에 저장된 _id에 저장된 값이다.
-    ).lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
+    )
+      .select(checkPassword ? '' : '-password')
+      .lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
   }
 
   // 새로운 댓글 document 객체를 생성하여 mongoDB에 저장하는 메소드
   create(comment) {
     // 생성된 객체는 값만 있는 non-POJO 객체이다. toObject를 이용해서 POJO 객체로 바꿔준다.
-    return Comment.create(comment).toObject();
+    return Comment.create(comment).then((doc) =>
+      doc.toObject({
+        transform: (doc, ret) => {
+          delete ret.password;
+          return ret;
+        }
+      })
+    ); // password 필드를 제외하고 반환
   }
 
   // 특정 id를 _id로 갖고 있는 댓글 document를 toUpdate 객체의 내용으로 덮어 씌운다(overwrite).
   // 덮어 씌우는 것이기 때문에 잘못된 값이 의도치 않게 들어가면 문제가 발생할 수 있다.
-  update(id, board) {
+  update(id, comment) {
     const updatedComment = Comment.findByIdAndUpdate(
       id, // document의 id, mongoDB에 저장된 _id에 저장된 값이다.
-      board,
+      comment,
       {
         runValidators: true, // schema 체크(업데이트 될 데이터에 대한 검증)를 진행한다.
         new: true // 업데이트 후의 document를 리턴받도록 한다.
       }
-    ).lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
+    )
+      .select('-password')
+      .lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
     return updatedComment;
+  }
+
+  // 댓글 좋아요 증가 및 증가된 데이터 반환
+  updateLike(id) {
+    return Comment.findByIdAndUpdate(
+      id,
+      { $inc: { likeCount: 1 } }, // likeCount를 1 증가시킴
+      { new: true, fields: 'likeCount' } // 업데이트된 후의 likeCount 반환
+    ).select('_id likeCount'); // id와 likeCount만 선택적으로 반환
   }
 
   // 특정 id를 _id로 갖고 있는 댓글 document를 삭제한다(hard delete).
