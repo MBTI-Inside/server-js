@@ -42,7 +42,7 @@ class CommentService {
       password: hashedPassword
     });
   }
-  updateMemoLike(id) {
+  updateCommentLike(id) {
     return this.commentModel.updateLike(id);
   }
   deleteComment(id) {
