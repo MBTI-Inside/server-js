@@ -78,7 +78,8 @@ commentRouter.delete(
   '/:id',
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
-    return await commentService.deleteComment(id);
+    const { memoId } = req.body;
+    return await commentService.deleteComment(id, memoId);
   })
 );
 

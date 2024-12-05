@@ -19,7 +19,10 @@ class CommentService {
       password: hashedPassword
     });
 
-    const { memoCmtCount } = await this.memoModel.updateMemoCmt(comment.memoId);
+    const { memoCmtCount } = await this.memoModel.updateMemoCmt(
+      comment.memoId,
+      1
+    );
 
     return response;
   }
@@ -45,7 +48,8 @@ class CommentService {
   updateCommentLike(id) {
     return this.commentModel.updateLike(id);
   }
-  deleteComment(id) {
+  async deleteComment(id, memoId) {
+    const { memoCmtCount } = await this.memoModel.updateMemoCmt(memoId, -1);
     return this.commentModel.delete(id);
   }
 }

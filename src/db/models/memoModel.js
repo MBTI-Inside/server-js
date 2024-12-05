@@ -81,10 +81,10 @@ class MemoModel {
   }
 
   // 메모 댓글 수 증가 및 증가된 데이터 반환
-  updateMemoCmt(id) {
+  updateMemoCmt(id, num) {
     return Memo.findByIdAndUpdate(
       id,
-      { $inc: { cmtCount: 1 } }, // cmtCount를 1 증가시킴
+      { $inc: { cmtCount: num } }, // cmtCount를 1 증가시킴
       { new: true, fields: 'cmtCount' } // 업데이트된 후의 cmtCount 반환
     ).select('cmtCount'); // id와 cmtCount만 선택적으로 반환
   }
