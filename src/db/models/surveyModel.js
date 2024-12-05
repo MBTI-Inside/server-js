@@ -24,12 +24,12 @@ class SurveyModel {
 
   // 문항 document 객체 전체를 찾아오는 메소드
   findSurveys(searchInfo) {
-    const { limit, skip } = searchInfo;
-    return Survey.aggregate([
-      { $skip: skip },
-      { $limit: limit },
-      { $sort: { createdAt: -1 } }
-    ]);
+    const { limit, skip, search } = searchInfo;
+    return Survey.find(search)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+      .lean();
     // return Survey.find().lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
   }
 

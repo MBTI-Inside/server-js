@@ -9,7 +9,34 @@ class SurveyService {
     return this.surveyModel.findById(id);
   }
   getSurveys(searchInfo) {
-    return this.surveyModel.findSurveys(searchInfo);
+    const search = searchInfo.search;
+
+    let searchCriteria = {};
+    if (search) {
+      const andCriteria = [];
+
+      search.forEach((item) => {
+        if (item.field && item.text) {
+          // 이미 해당 필드에 대한 조건이 있다면 추가
+          if (searchCriteria[item.field]) {
+            andCriteria.push({
+              [item.field]: { $regex: item.text, $options: 'i' }
+            });
+          } else {
+            searchCriteria[item.field] = { $regex: item.text, $options: 'i' };
+          }
+        }
+      });
+
+      if (andCriteria.length > 0) {
+        andCriteria.push(searchCriteria);
+        searchCriteria = { $and: andCriteria };
+      }
+    }
+    return this.surveyModel.findSurveys({
+      ...searchInfo,
+      search: searchCriteria
+    });
   }
   async getMbtiSurveys() {
     const mbtiSurveys = await this.surveyModel.findMbtiSurveys();
