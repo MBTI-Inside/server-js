@@ -42,10 +42,12 @@ memoRouter.get(
 memoRouter.post(
   '/',
   asyncHandler(async (req, res, next) => {
-    const { title, content, password, mbtiType, cardColor } = req.body;
+    const { title, content, nickName, password, mbtiType, cardColor } =
+      req.body;
     return await memoService.addMemo({
       title,
       content,
+      nickName,
       password,
       mbtiType,
       cardColor

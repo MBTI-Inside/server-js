@@ -12,6 +12,11 @@ const memoSchema = new Schema(
       type: String,
       required: true
     },
+    // 메모 작성자
+    nickName: {
+      type: String,
+      required: true
+    },
     // 메모 비밀번호
     password: {
       type: String,
