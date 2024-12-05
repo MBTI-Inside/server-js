@@ -1,10 +1,11 @@
-import { MemoModel } from '../db/models/index.js';
+import { MemoModel, CommentModel } from '../db/models/index.js';
 import { hashPassword, compareHashPassword } from '../misc/utils.js';
 import AppError from '../misc/AppError.js';
 
 class MemoService {
   constructor() {
     this.memoModel = new MemoModel();
+    this.commentModel = new CommentModel();
   }
   getMemo(id) {
     return this.memoModel.findById(id);
@@ -51,20 +52,20 @@ class MemoService {
       memo.password
     );
 
-    console.log(isPasswordCorrect);
     if (!isPasswordCorrect) {
       throw new AppError('Bad Request', 400, '비밀번호를 확인해 주세요.');
     }
     return memo;
   }
-  updateMemo(id, memo) {
-    const hashedPassword = hashPassword(memo.password);
+  async updateMemo(id, memo) {
+    const hashedPassword = await hashPassword(memo.password);
     return this.memoModel.update(id, { ...memo, password: hashedPassword });
   }
   updateMemoLike(id) {
     return this.memoModel.updateLike(id);
   }
-  deleteMemo(id) {
+  async deleteMemo(id) {
+    await this.commentModel.deleteAll(id);
     return this.memoModel.delete(id);
   }
 }

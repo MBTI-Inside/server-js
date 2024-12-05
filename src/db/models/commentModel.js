@@ -80,6 +80,11 @@ class CommentModel {
       id // document의 id, mongoDB에 저장된 _id에 저장된 값이다.
     ).lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
   }
+
+  // 특정 id를 _id로 갖고 있는 댓글 document를 전부 삭제한다(hard delete).
+  deleteAll(memoId) {
+    return Comment.deleteMany({ memoId }).lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
+  }
 }
 
 export default CommentModel;
