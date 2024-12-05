@@ -49,7 +49,11 @@ class CommentService {
     return this.commentModel.updateLike(id);
   }
   async deleteComment(id, memoId) {
-    const { memoCmtCount } = await this.memoModel.updateMemoCmt(memoId, -1);
+    const count = await this.commentModel.deleteThread(id, memoId);
+    const { memoCmtCount } = await this.memoModel.updateMemoCmt(
+      memoId,
+      -1 + count.deletedCount * -1
+    );
     return this.commentModel.delete(id);
   }
 }
