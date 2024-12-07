@@ -1,5 +1,6 @@
 import { MemoModel, CommentModel } from '../db/models/index.js';
 import { hashPassword, compareHashPassword } from '../misc/utils.js';
+import { isEmptyObj } from '../utils/common.js';
 import AppError from '../misc/AppError.js';
 
 class MemoService {
@@ -14,12 +15,11 @@ class MemoService {
   // 댓글을 작성할 때 해당 메모 Id에 대해 댓글 수를 업데이트 하는 방식으로 구현해야 한다.
 
   getMemos(memoInfo) {
-    const search = memoInfo.search;
+    const search = JSON.parse(memoInfo.search);
 
     let searchCriteria = {};
-    if (search) {
+    if (!isEmptyObj(search)) {
       const andCriteria = [];
-
       search.forEach((item) => {
         if (item.field && item.text) {
           // 이미 해당 필드에 대한 조건이 있다면 추가

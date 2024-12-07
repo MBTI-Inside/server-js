@@ -19,21 +19,10 @@ memoRouter.get(
   '/',
   asyncHandler(async (req, res, next) => {
     const { limit, skip, search } = req.query;
-    let searchArray = [];
-    // search는 다음과 같은 형태로 요청되어야 한다.
-    // search=[{"field":"title","text":"안녕"},{"field":"content","text":"하세요"}]
-
-    // 값을 파싱하는 영역이 router단이 맞을까?
-    if (search) {
-      searchArray = JSON.parse(search);
-    }
-    // 서비스의 getMemos와 모델단의 findMemos랑 동일한 객체 타입으로 만들어서 보낼 수는 없을까?
-    // 모델단의 findMemo는 무조건 key value의 객체 형태여야 될 것 같음
-    // 그럼 라우터에서 계산해서 보내는 방법밖에 없을 것 같은데..
     return await memoService.getMemos({
       limit: Number(limit),
       skip: Number(skip),
-      search: searchArray
+      search
     });
   })
 );

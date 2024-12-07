@@ -25,6 +25,7 @@ class MemoModel {
   // 게시글 document 객체 전체를 찾아오는 메소드
   findMemos(memoInfo) {
     const { limit, skip, search } = memoInfo;
+
     return Memo.find(search)
       .select('-password') // password 필드를 제외하고 반환
       .sort({ createdAt: -1 }) // 생성일 기준으로 내림차순 정렬
