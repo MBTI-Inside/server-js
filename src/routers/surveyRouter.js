@@ -19,18 +19,10 @@ surveyRouter.get(
   '/',
   asyncHandler(async (req, res, next) => {
     const { limit, skip, search } = req.query;
-    let searchArray = [];
-    // search는 다음과 같은 형태로 요청되어야 한다.
-    // search=[{"field":"title","text":"안녕"},{"field":"content","text":"하세요"}]
-
-    // 값을 파싱하는 영역이 router단이 맞을까?
-    if (search) {
-      searchArray = JSON.parse(search);
-    }
     return await surveyService.getSurveys({
       limit: Number(limit),
       skip: Number(skip),
-      search: searchArray
+      search
     });
   })
 );

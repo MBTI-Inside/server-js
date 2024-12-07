@@ -1,5 +1,5 @@
 import { SurveyModel } from '../db/models/index.js';
-import { shuffleArray } from '../utils/common.js';
+import { shuffleArray, isEmptyObj } from '../utils/common.js';
 
 class SurveyService {
   constructor() {
@@ -9,12 +9,11 @@ class SurveyService {
     return this.surveyModel.findById(id);
   }
   getSurveys(searchInfo) {
-    const search = searchInfo.search;
+    const search = JSON.parse(searchInfo.search);
 
     let searchCriteria = {};
-    if (search) {
+    if (!isEmptyObj(search)) {
       const andCriteria = [];
-
       search.forEach((item) => {
         if (item.field && item.text) {
           // 이미 해당 필드에 대한 조건이 있다면 추가
@@ -33,6 +32,7 @@ class SurveyService {
         searchCriteria = { $and: andCriteria };
       }
     }
+
     return this.surveyModel.findSurveys({
       ...searchInfo,
       search: searchCriteria
