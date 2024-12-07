@@ -45,3 +45,18 @@ export const shuffleArray = (array) => {
   }
   return array;
 };
+
+/**
+ * 작성자명 : 원종석
+ * 작성일자 : 2024-12-07 (토)
+ * 작성내용 : 입력받은 객체가 비어 있는지 확인한다.
+ * @param {Object} obj 비어 있는지 확인할 객체
+ * @returns {boolean} 객체가 비어 있으면 true, 그렇지 않으면 false
+ */
+export const isEmptyObj = (obj) => {
+  if (obj.constructor === Object && Object.keys(obj).length === 0) {
+    return true;
+  }
+
+  return false;
+};
