@@ -12,7 +12,8 @@ console.log(
   `어플리케이션 서버를 다음 환경으로 시작합니다: ${process.env.NODE_ENV}`
 );
 
-const envFound = config(); // dotenv를 사용하여 환경 변수도 읽어온다.
+const envFound = await config(); // dotenv를 사용하여 환경 변수도 읽어온다.
+
 // .env 파일이 없으면 에러를 던진다
 if (envFound.error) {
   throw new AppError(
