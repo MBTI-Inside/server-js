@@ -12,16 +12,16 @@ console.log(
   `어플리케이션 서버를 다음 환경으로 시작합니다: ${process.env.NODE_ENV}`
 );
 
-const envFound = config({ path: process.cwd() + '/.env' }); // 현재 작업 디렉터리를 기준으로 .env 경로 지정
+// // const envFound = config();
 
-// .env 파일이 없으면 에러를 던진다
-if (envFound.error) {
-  throw new AppError(
-    commonErrors.configError,
-    "Couldn't find .env file",
-    false
-  );
-}
+// // // .env 파일이 없으면 에러를 던진다
+// // if (envFound.error) {
+// //   throw new AppError(
+// //     commonErrors.configError,
+// //     "Couldn't find .env file",
+// //     false
+// //   );
+// }
 
 // mongoDB 연결을 위한 URI값이 있는 지 체크
 if (process.env.MONGODB_URI === undefined) {
