@@ -7,7 +7,7 @@ import commonErrors from './misc/commonErrors.js';
 import { v1 } from './routers/index.js';
 
 const corsOptions = {
-  origin: ['http://localhost:5173', 'http://localhost:5174'],
+  origin: process.env.ORIGIN_URL ?? 'http://localhost:5173',
   optionsSuccessStatus: 200,
   credentials: true
 };
