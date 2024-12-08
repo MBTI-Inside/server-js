@@ -13,7 +13,7 @@ console.log(
 );
 
 const envFound = await config(); // dotenv를 사용하여 환경 변수도 읽어온다.
-
+console.log(envFound);
 // .env 파일이 없으면 에러를 던진다
 if (envFound.error) {
   throw new AppError(
