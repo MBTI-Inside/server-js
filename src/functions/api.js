@@ -1,10 +1,10 @@
 import express from 'express';
+import serverless from 'serverless-http';
 import cors from 'cors';
-import { connectMongoDB, disconnectMongoDB } from './loader/index.js';
-import { port } from './config/index.js';
-import AppError from './misc/AppError.js';
-import commonErrors from './misc/commonErrors.js';
-import { v1 } from './routers/index.js';
+import { connectMongoDB } from '../loader/index.js';
+import AppError from '../misc/AppError.js';
+import commonErrors from '../misc/commonErrors.js';
+import { v1 } from '../routers/index.js';
 
 const corsOptions = {
   origin: ['http://localhost:5173', 'http://localhost:5174'],
@@ -49,10 +49,12 @@ app.use((error, req, res, next) => {
 
 console.log('express application 준비가 완료되었습니다.');
 
-// app.use(express.urlencoded({ extended: false }));
+// 조건부 실행: Netlify 환경에서는 무시
+if (process.env.NETLIFY !== 'true') {
+  app.listen(3000, function () {
+    console.log(`어플리케이션 서버가 3000에서 실행 중입니다....`);
+  });
+}
 
-app.listen(port, function () {
-  console.log(`어플리케이션 서버가 ${port}에서 실행 중입니다....`);
-});
-
-export default app;
+// Netlify Functions 핸들러
+export const handler = serverless(app);

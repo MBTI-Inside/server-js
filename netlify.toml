@@ -1,0 +1,22 @@
+[build]
+  # Functions 디렉토리 경로를 설정
+  functions = "src/functions"
+
+[dev]
+  # 로컬 개발 명령어
+  command = "npm start"
+  # 기본 로컬 서버 포트
+  port = 3000
+  # Netlify Dev가 Functions를 로컬에서 테스트할 때 사용할 경로
+  targetPort = 3000
+
+[functions]
+  # 타임아웃 및 메모리 관련 설정 (필요에 따라 조정)
+  node_bundler = "esbuild"
+  included_files = ["src/**/*.js"]
+
+[[redirects]]
+  # API 경로 리다이렉션 설정
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
