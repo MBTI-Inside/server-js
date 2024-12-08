@@ -16,8 +16,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --watch 'src/*' src/app.js",
-    "build": "netlify deploy --prod"
+    "start": "nodemon --watch 'src/*' src/app.js "
   },
   "repository": {
     "type": "git",
